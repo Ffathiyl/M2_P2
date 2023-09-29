@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2_074</title>
+</head>
+<body>
+    
+    <div class="header1">P2_074</div>
+
+    <form onsubmit="return validate()">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Nama</td>
+                    <td>:</td>
+                    <td>
+                        <input type="text" id="nama" >
+                    </td>
+                    <td id="error_nama" style="color: red;"></td>
+                </tr>
+                <tr>
+                    <td>Mata Kuliah</td>
+                    <td>:</td>
+                    <td>
+                        <select id="matakuliah">
+                            <option value="">Pilih mata kuliah</option>
+                            <option value="Matematika">Matematika</option>
+                            <option value="Fisika">Fisika</option>
+                            <option value="Kimia">Kimia</option>
+                        </select>
+                    </td>
+                    <td id="error_matakuliah" style="color: red;"></td>
+                </tr>
+                <tr>
+                    <td>Nilai</td>
+                    <td>:</td>
+                    <td>
+                        <input type="number" id="nilai" min="0" max="100">
+                    </td>
+                    <td id="error_nilai" style="color: red;"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="formReset()">Batal</button>
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="kirim">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <script>
+        function validate(){
+            let nama = document.getElementById("nama").value;
+            let matakuliah = document.getElementById("matakuliah").value;
+            let nilai = document.getElementById("nilai").value;
+            let validate = true;
+
+            // Validasi Nama
+            if(nama.trim() === ""){
+                document.getElementById("error_nama").innerText = "Harap isi field nama!";
+                validate = false;
+            } else {
+                let pattern = /^[a-zA-Z\s]*$/;
+                if(!pattern.test(nama.trim())){
+                    document.getElementById("error_nama").innerText = "Nama harus berisi huruf atau spasi!";
+                    validate = false;
+                } else if(nama.length > 20){
+                    document.getElementById("error_nama").innerText = "Nama maksimal 20 huruf!";
+                    validate = false;
+                } else {
+                    document.getElementById("error_nama").innerText = "";
+                }
+            }
+
+            // Validasi Mata Kuliah
+            if(matakuliah === ""){
+                document.getElementById("error_matakuliah").innerText = "Harap isi field matakuliah!";
+                validate = false;
+            } else {
+                document.getElementById("error_matakuliah").innerText = "";
+            }
+
+            // Validasi Nilai
+            if(nilai === ""){
+                document.getElementById("error_nilai").innerText = "Harap isi field nilai!";
+                validate = false;
+            } else {
+                document.getElementById("error_nilai").innerText = "";
+            }
+
+            return validate;
+        }
+
+            function formReset(){
+                alert("Your answer is cancelled");
+                document.getElementById("nama").value = "";
+                document.getElementById("matakuliah").value = "";
+                document.getElementById("nilai").value = "";
+                document.getElementById("error_nama").innerText = "";
+                document.getElementById("error_matakuliah").innerText = "";
+                document.getElementById("error_nilai").innerText = "";
+            }
+    </script>
+</body>
+</html>
